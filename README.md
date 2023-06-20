@@ -1,4 +1,4 @@
-![Logo](https://www.dropbox.com/s/yotyou49l1qla7u/Group%202.png?dl=0)
+![Logo](https://github.com/luvxpluto/pycrypt/assets/88396858/daee05c8-ed58-4ab1-8d0b-d555dae5b31f)
 # Pycrypt
 
 Pycrypt is a Python cryptography library that provides functionalities for encrypting and decrypting texts using various cryptographic algorithms, such as Caesar, Key, Vigenère, Morse Code, Binary, and Atbash. Additionally, it includes the ability to send and read encrypted emails using the aforementioned algorithms.
