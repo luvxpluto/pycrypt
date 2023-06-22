@@ -116,16 +116,74 @@ class KeywordCipher:
 
 class Morse:
     @staticmethod
-    def cifrar(texto):
-        # Implementa la lógica de cifrado Morse
-        # ...
-        return texto_cifrado
+    def encodeWordInMorse(word):
+        alphabet = ["A", "B", "C", "CH", "D", "E", "F", "G", "H", "I", "J",
+                    "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U",
+                    "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                    ".", ",", "?", '"', "/"]
+
+        morseCode = ["·—", "—···", "—·—·", "————", "—··", "·",
+                    "··—·", "——·", "····", "··", "·———", "—·—", "·—··",
+                    "——", "—·", "——·——", "———", "·——·", "——·—", "·—·", "···",
+                    "—", "··—", "···—", "·——", "—··—", "—·——", "——··", "—————",
+                    "·————", "··———", "···——", "····—", "·····", "—····",
+                    "——···", "———··", "————·", "·—·—·—", "——··——",
+                    "··——··", "·—··—·", "—··—·"]
+
+        encodedWord = ""
+
+        for char in word:
+            if char in alphabet:
+                charIndex = alphabet.index(char)
+                encodedWord += morseCode[charIndex] + "*"
+
+        return encodedWord[:-1]
+    
+    @staticmethod
+    def encode(message):
+        messageList = message.upper().split(" ")
+        encodedMessage = ""
+
+        for word in messageList:
+            encodedMessage += Morse.encodeWordInMorse(word) + " "
+
+        return encodedMessage.strip()
 
     @staticmethod
-    def descifrar(texto_cifrado):
-        # Implementa la lógica de descifrado Morse
-        # ...
-        return texto_descifrado
+    def decodeMorseToWord(morseWord):
+        letterMorse = morseWord.split("*")
+        alphabet = ["A", "B", "C", "CH", "D", "E", "F", "G", "H", "I", "J",
+                    "K", "L", "M", "N", "Ñ", "O", "P", "Q", "R", "S", "T", "U",
+                    "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                    ".", ",", "?", '"', "/"]
+
+        morseCode = ["·—", "—···", "—·—·", "————", "—··", "·",
+                    "··—·", "——·", "····", "··", "·———", "—·—", "·—··",
+                    "——", "—·", "——·——", "———", "·——·", "——·—", "·—·", "···",
+                    "—", "··—", "···—", "·——", "—··—", "—·——", "——··", "—————",
+                    "·————", "··———", "···——", "····—", "·····", "—····",
+                    "——···", "———··", "————·", "·—·—·—", "——··——",
+                    "··——··", "·—··—·", "—··—·"]
+
+        decodedWord = []
+
+        for morseChar in letterMorse:
+            if morseChar in morseCode:
+                charIndex = morseCode.index(morseChar)
+                decodedWord.append(alphabet[charIndex])
+        return decodedWord
+    
+    @staticmethod
+    # Ver si agregar la funcion de crear cadena
+    def decode(message):
+        morseWordList = message.split(" ")
+        decodedMessage = ""
+
+        for morseWord in morseWordList:
+            decodedWord = Morse.decodeMorseToWord(morseWord)
+            decodedMessage += decodedWord + " "
+
+        return decodedMessage.strip().capitalize()
 
 
 class Binary:
