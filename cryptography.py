@@ -144,13 +144,18 @@ class Binary:
 
 class Atbash:
     @staticmethod
-    def cifrar(texto):
-        # Implementa la lógica de cifrado Atbash
-        # ...
-        return texto_cifrado
+    def codeAndDecode(message):
+        message = message.upper()
+        alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        atbashAlphabet = list("ZYXWVUTSRQPONMLKJIHGFEDCBA")
+        encodedOrDecodedMessage = ""
 
-    @staticmethod
-    def descifrar(texto_cifrado):
-        # Implementa la lógica de descifrado Atbash
-        # ...
-        return texto_descifrado
+        for char in message:
+            if char == " ":
+                encodedOrDecodedMessage += " "
+            elif char in alphabet:
+                char_index = alphabet.index(char)
+                encoded_or_decoded_char = atbashAlphabet[char_index]
+                encodedOrDecodedMessage += encoded_or_decoded_char
+
+        return encodedOrDecodedMessage
