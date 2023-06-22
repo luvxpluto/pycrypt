@@ -28,20 +28,59 @@ class Cesar:
                 decodedMessage += alphabet[index]
         return decodedMessage
 
-
 class Vigenere:
     @staticmethod
-    def cifrar(texto, clave):
-        # Implementa la lógica de cifrado Vigenère
-        # ...
-        return texto_cifrado
+    def shiftLetter(letter, shift):
+        alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        shiftedIndex = (alphabet.index(letter) + shift) % 26
+        shiftedLetter = alphabet[shiftedIndex]
+        return shiftedLetter
 
     @staticmethod
-    def descifrar(texto_cifrado, clave):
-        # Implementa la lógica de descifrado Vigenère
-        # ...
-        return texto_descifrado
+    def encodeWordVigenere(word, shift):
+        encodedWord = ""
+        for i, letter in enumerate(word):
+            if i % 2 == 0:
+                encodedWord += Vigenere.shiftLetter(letter, shift // 10)
+            else:
+                encodedWord += Vigenere.shiftLetter(letter, shift % 10)
+        return encodedWord
 
+    @staticmethod
+    def encode(message, shift):
+        encodedMessage = ""
+        words = message.upper.split()
+        for word in words:
+            encodedWord = Vigenere.encodeWordVigenere(word, shift)
+            encodedMessage += encodedWord + " "
+        return encodedMessage.strip()
+
+    @staticmethod
+    def shiftLetterDecoded(encodedLetter, shift):
+        alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        encodedLetter = encodedLetter.upper()
+        shiftedIndex = (alphabet.index(encodedLetter) - shift) % 26
+        shiftedLetter = alphabet[shiftedIndex]
+        return shiftedLetter
+
+    @staticmethod
+    def decodeWordVigenere(encodedWord, shift):
+        decodedWord = ""
+        for i, letter in enumerate(encodedWord):
+            if i % 2 == 0:
+                decodedWord += Vigenere.shiftLetterDecoded(letter, shift // 10)
+            else:
+                decodedWord += Vigenere.shiftLetterDecoded(letter, shift % 10)
+        return decodedWord
+
+    @staticmethod
+    def decode(encodedMessage, shift):
+        decodedMessage = ""
+        words = encodedMessage.split()
+        for word in words:
+            decodedWord = Vigenere.decodeWordVigenere(word, shift)
+            decodedMessage += decodedWord + " "
+        return decodedMessage.strip()
 
 class KeywordCipher:
     @staticmethod
@@ -57,14 +96,17 @@ class KeywordCipher:
             KeywordCipher.adaptKeyInWord(word, key) for word in messageInWords)
         return messageInKey
 
+    @staticmethod
     def letterToNumericValue(letter):
         alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         return alphabet.index(letter) + 1
 
+    @staticmethod
     def valueToLetter(value):
         alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         return alphabet[value - 1]
 
+    @staticmethod
     def encodeWordWithKey(word, key):
         encodedWord = ""
         for letter, key_letter in zip(word, key):
@@ -110,9 +152,7 @@ class KeywordCipher:
         for word, key_word in zip(messageWords, keyWords):
             decodedWord = KeywordCipher.decodeWordWithKey(word,key_word)
             decodedMessage += decodedWord + " "
-
         return decodedMessage[:-1].capitalize()
-
 
 class Morse:
     @staticmethod
@@ -182,9 +222,7 @@ class Morse:
         for morseWord in morseWordList:
             decodedWord = Morse.decodeMorseToWord(morseWord)
             decodedMessage += decodedWord + " "
-
         return decodedMessage.strip().capitalize()
-
 
 class Binary:
     @staticmethod
@@ -213,9 +251,6 @@ class Binary:
 
         return binaryMessage.strip()
     
-
-    @staticmethod
-    
     @staticmethod
     def decodeWordFromBinary(binaryWord):
         binaryLetters = binaryWord.split(" ")
@@ -224,7 +259,6 @@ class Binary:
                     "01000","01001","01010","01011","01100","01101","01110","01111",
                     "10000","10001","10010","10011","10100","10101","10110","10111","11000",
                     "11001"]
-        
         decodedWord = []
         
         for letter in binaryLetters:
@@ -235,20 +269,19 @@ class Binary:
         return decodedWord
 
     @staticmethod
-    def decodeMessageFromBinary(binaryMessage):
+    def decode(binaryMessage):
         binaryMessageList = binaryMessage.split("*")
         decodedMessage = ""
         
         for binaryWord in binaryMessageList:
             decodedWord = Binary.decodeWordFromBinary(binaryWord)
             decodedMessage += " ".join(decodedWord) + " "
-        
         return decodedMessage.strip.capitalize()
 
 
 class Atbash:
     @staticmethod
-    def codeAndDecode(message):
+    def encodeAndDecode(message):
         message = message.upper()
         alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
         atbashAlphabet = list("ZYXWVUTSRQPONMLKJIHGFEDCBA")
@@ -261,5 +294,4 @@ class Atbash:
                 char_index = alphabet.index(char)
                 encoded_or_decoded_char = atbashAlphabet[char_index]
                 encodedOrDecodedMessage += encoded_or_decoded_char
-
         return encodedOrDecodedMessage
