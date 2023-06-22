@@ -188,16 +188,62 @@ class Morse:
 
 class Binary:
     @staticmethod
-    def cifrar(texto):
-        # Implementa la lógica de cifrado Binary
-        # ...
-        return texto_cifrado
+    def encodeWordToBinary(word):
+        alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        binaryCode = ["00000", "00001", "00010", "00011", "00100", "00101", "00110", "00111",
+                    "01000", "01001", "01010", "01011", "01100", "01101", "01110", "01111",
+                    "10000", "10001", "10010", "10011", "10100", "10101", "10110", "10111", "11000",
+                    "11001"]
+
+        binaryWord = ""
+        for char in word:
+            if char in alphabet:
+                charIndex = alphabet.index(char)
+                binaryWord += binaryCode[charIndex] + " "
+
+        return binaryWord.strip()
+    
+    @staticmethod
+    def encode(message):
+        messageList = message.uper.split(" ")
+        binaryMessage = ""
+        for word in messageList:
+            binaryWord = Binary.encodeWordToBinary(word)
+            binaryMessage += binaryWord + " * "
+
+        return binaryMessage.strip()
+    
 
     @staticmethod
-    def descifrar(texto_cifrado):
-        # Implementa la lógica de descifrado Binary
-        # ...
-        return texto_descifrado
+    
+    @staticmethod
+    def decodeWordFromBinary(binaryWord):
+        binaryLetters = binaryWord.split(" ")
+        alphabet = list("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        binaryCode = ["00000","00001","00010","00011","00100","00101","00110","00111",
+                    "01000","01001","01010","01011","01100","01101","01110","01111",
+                    "10000","10001","10010","10011","10100","10101","10110","10111","11000",
+                    "11001"]
+        
+        decodedWord = []
+        
+        for letter in binaryLetters:
+            if letter in binaryCode:
+                index = binaryCode.index(letter)
+                decodedWord.append(alphabet[index])
+        
+        return decodedWord
+
+    @staticmethod
+    def decodeMessageFromBinary(binaryMessage):
+        binaryMessageList = binaryMessage.split("*")
+        decodedMessage = ""
+        
+        for binaryWord in binaryMessageList:
+            decodedWord = Binary.decodeWordFromBinary(binaryWord)
+            decodedMessage += " ".join(decodedWord) + " "
+        
+        return decodedMessage.strip.capitalize()
 
 
 class Atbash:
