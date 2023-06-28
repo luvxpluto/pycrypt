@@ -1,4 +1,4 @@
-class Cesar:
+class Caesar:
     @staticmethod
     def encode(message):
         message = message.upper()
@@ -277,7 +277,6 @@ class Binary:
             decodedWord = Binary.decodeWordFromBinary(binaryWord)
             decodedMessage += " ".join(decodedWord) + " "
         return decodedMessage.strip.capitalize()
-
 
 class Atbash:
     @staticmethod
