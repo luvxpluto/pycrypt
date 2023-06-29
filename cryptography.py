@@ -11,6 +11,7 @@ class Caesar:
             elif letter in alphabet:
                 index = alphabet.index(letter)
                 encodedMessage += encryptedAlphabet[index]
+        print("encodedMessage: ", encodedMessage)
         return encodedMessage
 
     @staticmethod
@@ -49,7 +50,7 @@ class Vigenere:
     @staticmethod
     def encode(message, shift):
         encodedMessage = ""
-        words = message.upper.split()
+        words = message.upper().split()
         for word in words:
             encodedWord = Vigenere.encodeWordVigenere(word, shift)
             encodedMessage += encodedWord + " "
@@ -243,7 +244,7 @@ class Binary:
     
     @staticmethod
     def encode(message):
-        messageList = message.uper.split(" ")
+        messageList = message.upper().split(" ")
         binaryMessage = ""
         for word in messageList:
             binaryWord = Binary.encodeWordToBinary(word)

@@ -42,19 +42,19 @@ def main():
                 encodeMenu()
                 encodeOption = input("Choose an option: ")
                 if encodeOption == "1":
-                    Caesar.encrypt(message)
+                    print(Caesar.encode(message))
                 elif encodeOption == "2":
                     key = str(input('Enter the key (a word) you want to use to encode your message: \n'))
-                    KeywordCipher.encrypt(message, key)
+                    print(KeywordCipher.encode(message, key))
                 elif encodeOption == "3":
                     shift = int(input('Enter the shift value you want to use to encode your message: \n'))
-                    Vigenere.encrypt(message, shift)
+                    print(Vigenere.encode(message, shift))
                 elif encodeOption == "4":
-                    Morse.encrypt(message)
+                    print(Morse.encode(message))
                 elif encodeOption == "5":
-                    Binary.encrypt(message)
+                    print(Binary.encode(message))
                 elif encodeOption == "6":
-                    Atbash.encrypt(message)
+                    print(Atbash.encodeAndDecode(message))
                 elif encodeOption == "7":
                     break
                 else:
@@ -66,21 +66,21 @@ def main():
                 decodeMenu()
                 decodeOption = input("Choose an option: ")
                 if decodeOption == "1":
-                    Caesar.decrypt(message)
+                    print(Caesar.decode(message))
                 elif decodeOption == "2":
                     key = str(input('Enter the key you want to use to encode your message: \n'
                                     '(It must be the same key used to encrypt the message) \n'))
-                    KeywordCipher.decrypt(message, key)
+                    print(KeywordCipher.decode(message, key))
                 elif decodeOption == "3":
                     shift = int(input('Enter the shift value you want to use to encode your message: \n'\
                                       '(It must be the same shift used to encrypt the message) \n'))
-                    Vigenere.decrypt(message, shift)
+                    print(Vigenere.decode(message, shift))
                 elif decodeOption == "4":
-                    Morse.decrypt(message)
+                    print(Morse.decode(message))
                 elif decodeOption == "5":
-                    Binary.decrypt(message)
+                    print(Binary.decode(message))
                 elif decodeOption == "6":
-                    Atbash.decrypt(message)
+                    print(Atbash.encodeAndDecode(message))
                 elif decodeOption == "7":
                     print("Goodbye!")
                     break
