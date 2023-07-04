@@ -42,10 +42,21 @@ def main():
                 if encodeOption == "1":
                     print(Caesar.encode(message))
                 elif encodeOption == "2":
-                    key = str(input('Enter the key (a word) you want to use to encode your message: \n'))
+                    while True:
+                        key = str(input('Enter the key (a word) you want to use to encode your message: \n'))
+                        if not key.isalpha():
+                            print("Invalid key. Please enter a word.")
+                            continue
+                        break
                     print(KeywordCipher.encode(message, key))
                 elif encodeOption == "3":
-                    shift = int(input('Enter the shift value you want to use to encode your message: \n'))
+                    while True:
+                        shift = input('Enter the shift value you want to use to encode your message: \n')
+                        if not shift.isdigit():
+                            print("Invalid shift value. Please enter an integer.")
+                            continue
+                        shift = int(shift)
+                        break
                     print(Vigenere.encode(message, shift))
                 elif encodeOption == "4":
                     print(Morse.encode(message))
@@ -66,12 +77,23 @@ def main():
                 if decodeOption == "1":
                     print(Caesar.decode(message))
                 elif decodeOption == "2":
-                    key = str(input('Enter the key you want to use to encode your message: \n'
+                    while True:
+                        key = str(input('Enter the key you want to use to encode your message: \n'
                                     '(It must be the same key used to encrypt the message) \n'))
+                        if not key.isalpha():
+                            print("Invalid key. Please enter a word.")
+                            continue
+                        break
                     print(KeywordCipher.decode(message, key))
                 elif decodeOption == "3":
-                    shift = int(input('Enter the shift value you want to use to encode your message: \n'\
+                    while True:
+                        shift = int(input('Enter the shift value you want to use to encode your message: \n'\
                                       '(It must be the same shift used to encrypt the message) \n'))
+                        if not shift.isdigit():
+                            print("Invalid shift value. Please enter an integer.")
+                            continue
+                        shift = int(shift)
+                        break
                     print(Vigenere.decode(message, shift))
                 elif decodeOption == "4":
                     print(Morse.decode(message))
