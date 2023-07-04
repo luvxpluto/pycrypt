@@ -5,8 +5,6 @@ def mainMenu():
           "Actions you can perform: \n"
           "1- Message Encryption \n"
           "2- Message Decryption \n"
-          "3- Email Sending \n"
-          "4- Email Reading \n"
           "5- Exit")
 
 def encodeMenu():
@@ -87,12 +85,6 @@ def main():
                 else:
                     print("Invalid option. Please choose a valid option.")
         elif option == "3":
-            print("You have chosen option 3.")
-            # Here you can add the logic for option 3
-        elif option == "4":
-            print("You have chosen option 4.")
-            # Here you can add the logic for option 4
-        elif option == "5":
             print("Goodbye!")
             break
         else:
